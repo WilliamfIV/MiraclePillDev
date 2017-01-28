@@ -10,29 +10,26 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    @IBOutlet weak var statePicker: UIPickerView!
-    @IBOutlet weak var stateButton: UIButton!
+    @IBOutlet weak var stateTextField: UITextField!
+    var statePicker: UIPickerView = UIPickerView()
   
-    let states = ["alaska", "alabama", "kansas", "delaware", "michigan", "virginia", "california", "hawaii"]
+    let states: [String] = ["alaska", "alabama", "kansas", "delaware", "michigan", "virginia", "california", "hawaii"]
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         statePicker.dataSource = self
         statePicker.delegate = self
         
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-
-    @IBAction func stateButtonPressed(_ sender: Any) {
-        
-        stateButton.isHidden = true
-        
+        // The inputView is the default displayed view when the textField is selected.
+        stateTextField.inputView = statePicker
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -48,11 +45,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        stateButton.setTitle(states[row], for: UIControlState.normal)
+        stateTextField.text = states[row]
         
     }
     
+    
+    
 }
 
-//WHY WONT PICKER VIEW SHOW UP 
-//ASK AT CODE AND COFFEE!!!!!!!!!!!!!
+
