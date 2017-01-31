@@ -10,19 +10,43 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
+    
+    
+    
     @IBOutlet weak var stateTextField: UITextField!
     var statePicker: UIPickerView = UIPickerView()
   
+   
+    
+    
     let states: [String] = ["alaska", "alabama", "kansas", "delaware", "michigan", "virginia", "california", "hawaii"]
         
+   
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
         
         statePicker.dataSource = self
         statePicker.delegate = self
         
+       
+        
+        
+        
         // The inputView is the default displayed view when the textField is selected.
+       
         stateTextField.inputView = statePicker
+        
+    
+    
+    
+    
+    
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,9 +68,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
+        //returns statename to textfield.
         stateTextField.text = states[row]
-        
+       //makes statePicker disapear
+        stateTextField.endEditing(true)
+
     }
     
     
