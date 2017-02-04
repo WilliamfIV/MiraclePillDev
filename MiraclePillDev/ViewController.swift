@@ -10,43 +10,30 @@ import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
-    
-    
-    
+    //statepicker
     @IBOutlet weak var stateTextField: UITextField!
-    var statePicker: UIPickerView = UIPickerView()
-  
-   
+       var statePicker: UIPickerView = UIPickerView()
     
-    
+    //array of states
     let states: [String] = ["alaska", "alabama", "kansas", "delaware", "michigan", "virginia", "california", "hawaii"]
-        
+    
+    var activeTextfield: UITextField? = nil
    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         
         statePicker.dataSource = self
         statePicker.delegate = self
         
+       // The inputView is the default displayed view when the textField is selected.
+       stateTextField.inputView = statePicker
+        
+        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.numberOfTapsRequired = 1
+        self.view.addGestureRecognizer(tapGesture)
+        
        
-        
-        
-        
-        // The inputView is the default displayed view when the textField is selected.
-       
-        stateTextField.inputView = statePicker
-        
-    
-    
-    
-    
-    
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,10 +60,40 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
        //makes statePicker disapear
         stateTextField.endEditing(true)
 
+       }
+
+
+    
+    func hideKeyboard() {
+        print("Tap")
+        
+        activeTextfield?.endEditing(true)
+        activeTextfield = nil
+        
     }
     
     
     
 }
+
+// Mark: - UITextFieldDelegate Methods
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+        activeTextfield = textField
+    }
+
+    
+    
+}
+
+
+
+// Look up segues for "Buy-Now" button
+// Look up adding new ViewControllers in storyboard and creating new View Controllers
+// Look up adding action methods to UIButtons
+// Look up adding images to UIButtons
+
 
 
