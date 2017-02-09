@@ -14,6 +14,12 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet weak var stateTextField: UITextField!
        var statePicker: UIPickerView = UIPickerView()
     
+    //hiddenButton for segue
+    @IBAction func hiddenButton(_ sender: Any) {
+        performSegue(withIdentifier: "hiddenButton", sender: self)
+    }
+    
+    
     //array of states
     let states: [String] = ["alaska", "alabama", "kansas", "delaware", "michigan", "virginia", "california", "hawaii"]
     
